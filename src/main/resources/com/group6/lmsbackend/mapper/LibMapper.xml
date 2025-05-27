@@ -1,0 +1,31 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group6.lmsbackend.mapper.LibMapper">
+    <insert id="save" parameterType="com.group6.lmsbackend.vo.Lib">
+        insert into `lib` (
+            libId,
+            libName,
+            libPw,
+            libEmail,
+            libBirth,
+            libPNum,
+            adminNY,
+            applyNY,
+            createdDate,
+            modifiedDate
+        )
+        VALUES (
+                   #{libId},
+                   #{libName},
+                   #{libPw},
+                   #{libEmail},
+                   #{libBirth},
+                   #{libPNum},
+                   #{adminNY},
+                   #{applyNY},
+                   SYSDATE(),
+                   SYSDATE()
+               )
+    </insert>
+
+
+</mapper>
