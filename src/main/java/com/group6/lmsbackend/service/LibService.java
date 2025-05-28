@@ -15,4 +15,9 @@ public class LibService {
         return libDao.save(l);
     }
 
+    public boolean login(String libId, String libPw){
+        Lib lib = libDao.findByLibId(libId);
+        return lib != null && lib.getLibPw().equals(libPw);
+    }
+
 }
