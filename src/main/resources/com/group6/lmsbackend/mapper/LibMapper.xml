@@ -27,8 +27,5 @@
                )
     </insert>
 
-    <select id="selectByLibId" parameterType="string" resultType="com.group6.lmsbackend.vo.Lib">
-        SELECT * FROM lib WHERE libId = #{libId}
-    </select>
 
 </mapper>
