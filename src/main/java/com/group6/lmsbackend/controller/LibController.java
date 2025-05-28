@@ -48,7 +48,7 @@ public class LibController {
     }
 
     //사서 로그인
-    @PostMapping("/login")
+    @PostMapping("login")
     public ResponseEntity<?> login(
             @RequestParam("libId") String libId,
             @RequestParam("libPw") String libPw) {
