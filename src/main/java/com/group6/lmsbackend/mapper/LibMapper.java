@@ -8,4 +8,6 @@ public interface LibMapper {
 
     public int save(Lib l);
 
+    Lib selectByLibId(String libId);
+
 }

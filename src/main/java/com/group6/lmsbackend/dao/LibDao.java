@@ -14,4 +14,8 @@ public class LibDao {
     public int save(Lib l) {
         return libMapper.save(l);
     }
+
+    public Lib findByLibId(String libId) {
+        return libMapper.selectByLibId(libId);
+    }
 }

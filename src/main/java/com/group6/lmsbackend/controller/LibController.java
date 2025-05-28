@@ -47,4 +47,21 @@ public class LibController {
         return new ResponseEntity<Lib>(l, HttpStatus.OK);
     }
 
+    // 주석 테스트
+
+    //사서 로그인
+    @PostMapping("login")
+    public ResponseEntity<?> login(
+            @RequestParam("libId") String libId,
+            @RequestParam("libPw") String libPw) {
+        boolean isLogin = libService.login(libId,libPw);
+
+        if(isLogin){
+            return new ResponseEntity<>("로그인 성공",HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>("아이디 또는 비밀번호가 틀렸습니다.",HttpStatus.UNAUTHORIZED);
+        }
+    }
+
 }
