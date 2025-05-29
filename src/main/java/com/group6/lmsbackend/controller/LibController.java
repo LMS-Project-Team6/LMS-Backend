@@ -52,12 +52,17 @@ public class LibController {
     //사서 로그인
     @PostMapping("login")
     public ResponseEntity<?> login(
-            @RequestParam("libId") String libId,
-            @RequestParam("libPw") String libPw) {
-        boolean isLogin = libService.login(libId,libPw);
+            @RequestParam(value="libId") String libId,
+            @RequestParam(value="libPw") String libPw) {
 
-        if(isLogin){
-            return new ResponseEntity<>("로그인 성공",HttpStatus.OK);
+        Lib lib = new Lib();
+        lib.setLibId(libId);
+        lib.setLibPw(libPw);
+
+        Lib l = libService.login(lib);
+
+        if(l != null) {
+            return new ResponseEntity<>(l,HttpStatus.OK);
         }
         else{
             return new ResponseEntity<>("아이디 또는 비밀번호가 틀렸습니다.",HttpStatus.UNAUTHORIZED);
