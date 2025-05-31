@@ -10,4 +10,6 @@ public interface BookMapper {
 
     public int updateBook(Book book);
 
+    public Book getBookDetails(String bookId);
+
 }

@@ -15,4 +15,6 @@ public class BookDao {
 
     public int updateBook(Book book) { return bookMapper.updateBook(book); }
 
+    public Book getBookDetails(String bookId) { return bookMapper.getBookDetails(bookId); }
+
 }

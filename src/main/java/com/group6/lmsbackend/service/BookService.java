@@ -14,4 +14,6 @@ public class BookService {
     public int addBook(Book book) { return bookDao.addBook(book); }
 
     public int updateBook(Book book) { return bookDao.updateBook(book); }
+
+    public Book getBookDetails(String bookId) { return bookDao.getBookDetails(bookId); }
 }
