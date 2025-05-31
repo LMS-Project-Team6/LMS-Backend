@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -37,6 +38,28 @@ public class BookController {
         book.setLendNY(lendNY);
 
         bookService.addBook(book);
+
+        return new ResponseEntity<Book>(book, HttpStatus.OK);
+    }
+
+    //도서 수정
+    @PutMapping("updateBook")
+    public ResponseEntity<?> updateBook(
+            @RequestParam(value="bookId") String bookId,
+            @RequestParam(value="bookTitle") String bookTitle,
+            @RequestParam(value="bookWriter") String bookWriter,
+            @RequestParam(value="bookPublisher") String bookPublisher,
+            @RequestParam(value="bookCNum") String bookCNum
+    ){
+        Book book = new Book();
+
+        book.setBookId(bookId);
+        book.setBookTitle(bookTitle);
+        book.setBookWriter(bookWriter);
+        book.setBookPublisher(bookPublisher);
+        book.setBookCNum(bookCNum);
+
+        bookService.updateBook(book);
 
         return new ResponseEntity<Book>(book, HttpStatus.OK);
     }
