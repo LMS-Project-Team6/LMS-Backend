@@ -8,4 +8,6 @@ public interface BookMapper {
 
     public int addBook(Book book);
 
+    public int updateBook(Book book);
+
 }
