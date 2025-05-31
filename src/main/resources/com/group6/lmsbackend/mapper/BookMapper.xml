@@ -31,4 +31,8 @@
             modifiedDate = NOW()
         WHERE bookId = #{bookId}
     </update>
+
+    <select id="getBookDetails" resultType="com.group6.lmsbackend.vo.Book">
+        SELECT * FROM book WHERE bookId = #{bookId}
+    </select>
 </mapper>

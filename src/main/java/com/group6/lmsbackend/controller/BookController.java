@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(value = "book")
@@ -62,5 +59,21 @@ public class BookController {
         bookService.updateBook(book);
 
         return new ResponseEntity<Book>(book, HttpStatus.OK);
+    }
+
+    //도서 리스트 조회
+
+    //도서 상세 조회
+    @GetMapping("getBookDetails")
+    public ResponseEntity<?> getBookDetails(
+            @RequestParam(value="bookId") String bookId
+    ){
+        Book book = bookService.getBookDetails(bookId);
+
+        if (book != null) {
+            return new ResponseEntity<Book>(book, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("존재하지 않는 도서입니다.", HttpStatus.NOT_FOUND);
+        }
     }
 }
