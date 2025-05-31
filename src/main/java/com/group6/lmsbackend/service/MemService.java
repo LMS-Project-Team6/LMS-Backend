@@ -1,0 +1,26 @@
+package com.group6.lmsbackend.service;
+
+import com.group6.lmsbackend.dao.MemDao;
+import com.group6.lmsbackend.vo.Mem;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class MemService {
+
+    @Autowired
+    MemDao memDao;
+
+    public int memAdd(Mem mem) {
+        return memDao.memAdd(mem);
+    }
+
+    public int memUpdate(Mem mem) {return memDao.memUpdate(mem);}
+
+    public List<Mem> memSearch(Mem mem) {return memDao.memSearch(mem);}
+
+
+
+}

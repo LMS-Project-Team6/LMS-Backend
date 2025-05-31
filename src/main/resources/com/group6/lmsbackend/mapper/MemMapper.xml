@@ -1,0 +1,56 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group6.lmsbackend.mapper.MemMapper">
+    <insert id="memAdd" parameterType="com.group6.lmsbackend.vo.Mem">
+        insert into `mem`
+        (
+            memId,
+            memName,
+            memEmail,
+            memBirth,
+            memPNum,
+            createdDate,
+            modifiedDate
+        )
+        values
+            (
+            #{memId},
+            #{memName},
+            #{memEmail},
+            #{memBirth},
+            #{memPNum},
+            SYSDATE(),
+            SYSDATE()
+            )
+    </insert>
+
+    <update id="memUpdate" parameterType="com.group6.lmsbackend.vo.Mem">
+        UPDATE mem
+        SET
+            memName = #{memName},
+            memEmail = #{memEmail},
+            memBirth = #{memBirth},
+            memPNum = #{memPNum},
+            modifiedDate = SYSDATE()
+        WHERE
+            memId = #{memId}
+    </update>
+
+    <!--회원 전체 조회-->
+    <select id="memSearch" parameterType="com.group6.lmsbackend.vo.Mem" resultType="com.group6.lmsbackend.vo.Mem">
+        SELECT memId, memName, memPNum
+        FROM mem
+        <where>
+            <if test="memId != null and memId != ''">
+                AND memId = #{memId}
+            </if>
+            <if test="memName != null and memName != ''">
+                AND memName LIKE CONCAT('%', #{memName}, '%')
+            </if>
+            <if test="memPNum != null and memPNum != ''">
+                AND memPNum = #{memPNum}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>
