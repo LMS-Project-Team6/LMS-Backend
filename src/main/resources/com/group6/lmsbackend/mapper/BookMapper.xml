@@ -1,0 +1,24 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group6.lmsbackend.mapper.BookMapper">
+    <insert id="addBook" parameterType="com.group6.lmsbackend.vo.Book">
+        INSERT INTO book (
+            bookId,
+            bookTitle,
+            bookWriter,
+            bookPublisher,
+            bookCNum,
+            lendNY,
+            createdDate,
+            modifiedDate
+        )VALUES (
+                 #{bookId},
+                 #{bookTitle},
+                 #{bookWriter},
+                 #{bookPublisher},
+                 #{bookCNum},
+                 #{lendNY},
+                 SYSDATE(),
+                 SYSDATE()
+                        )
+    </insert>
+</mapper>
