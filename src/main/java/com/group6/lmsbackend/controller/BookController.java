@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(value = "book")
 public class BookController {
@@ -62,6 +64,20 @@ public class BookController {
     }
 
     //도서 리스트 조회
+    @GetMapping("searchBooks")
+    public ResponseEntity<?> searchBooks(
+            @RequestParam(value="searchType") String searchType,
+            @RequestParam(value="searchValue") String searchValue
+    ){
+        List<Book> books = bookService.searchBooks(searchType, searchValue);
+
+        if (books.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("검색 결과가 없습니다.");
+        }
+        else {
+            return ResponseEntity.ok(books);
+        }
+    }
 
     //도서 상세 조회
     @GetMapping("getBookDetails")

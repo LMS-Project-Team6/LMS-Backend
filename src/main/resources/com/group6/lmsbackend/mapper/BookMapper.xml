@@ -32,6 +32,23 @@
         WHERE bookId = #{bookId}
     </update>
 
+    <select id="searchBooks" parameterType="map" resultType="com.group6.lmsbackend.vo.Book">
+        SELECT bookId, bookTitle, bookCNum FROM book
+        <where>
+            <choose>
+                <when test="searchType == 'bookId'">
+                    AND bookId = #{searchValue}
+                </when>
+                <when test="searchType == 'bookTitle'">
+                    AND bookTitle LIKE CONCAT('%', #{searchValue}, '%')
+                </when>
+                <when test="searchType == 'bookCNum'">
+                    AND bookCNum = #{searchValue}
+                </when>
+            </choose>
+        </where>
+    </select>
+
     <select id="getBookDetails" resultType="com.group6.lmsbackend.vo.Book">
         SELECT * FROM book WHERE bookId = #{bookId}
     </select>
