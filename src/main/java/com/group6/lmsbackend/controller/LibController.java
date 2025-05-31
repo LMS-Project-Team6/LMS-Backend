@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.print.attribute.standard.DateTimeAtCreation;
-
 @Controller
 @RequestMapping(value = "lib")
 public class LibController {
@@ -47,8 +45,6 @@ public class LibController {
         return new ResponseEntity<Lib>(l, HttpStatus.OK);
     }
 
-    // 주석 테스트
-
     //사서 로그인
     @PostMapping("login")
     public ResponseEntity<?> login(
@@ -61,11 +57,17 @@ public class LibController {
 
         Lib l = libService.login(lib);
 
-        if(l != null) {
-            return new ResponseEntity<>(l,HttpStatus.OK);
-        }
-        else{
-            return new ResponseEntity<>("아이디 또는 비밀번호가 틀렸습니다.",HttpStatus.UNAUTHORIZED);
+        if (l != null) {
+            if (l.getAdminNY() == 1) {
+                return new ResponseEntity<>("관리자 입니다.", HttpStatus.OK);
+            } else if (l.getAdminNY() == 0) {
+                return new ResponseEntity<>("사서 입니다.", HttpStatus.OK);
+            }
+            else {
+                return new ResponseEntity<>("잘못 설정 되어 있습니다.", HttpStatus.UNAUTHORIZED);
+            }
+        } else {
+            return new ResponseEntity<>("아이디 또는 비밀번호가 틀렸습니다.", HttpStatus.UNAUTHORIZED);
         }
     }
 
