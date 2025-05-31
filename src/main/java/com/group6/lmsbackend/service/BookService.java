@@ -5,6 +5,8 @@ import com.group6.lmsbackend.vo.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BookService {
 
@@ -16,4 +18,7 @@ public class BookService {
     public int updateBook(Book book) { return bookDao.updateBook(book); }
 
     public Book getBookDetails(String bookId) { return bookDao.getBookDetails(bookId); }
+
+    public List<Book> searchBooks(String searchType, String searchValue) { return bookDao.searchBooks(searchType, searchValue); }
+
 }
