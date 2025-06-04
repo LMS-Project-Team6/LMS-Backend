@@ -52,5 +52,11 @@
         </where>
     </select>
 
+    <!-- memId로 회원 조회 -->
+    <select id="findByMemId" resultType="com.group6.lmsbackend.vo.Mem">
+        SELECT *
+        FROM mem
+        WHERE memId = #{memId}
+    </select>
 
 </mapper>
