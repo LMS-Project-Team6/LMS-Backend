@@ -19,5 +19,7 @@ public class LibService {
         return libDao.login(lib);
     }
 
+    public boolean isLibIdDuplicate(String libId) {return libDao.countByLibId(libId) > 0;}
+
 
 }

@@ -31,5 +31,9 @@
         SELECT * FROM lib WHERE libId = #{libId} AND libPw=MD5(#{libPw})
     </select>
 
+    <select id="countByLibId" resultType="int" parameterType="string">
+        SELECT COUNT(*) FROM lib WHERE libId = #{libId}
+    </select>
+
 
 </mapper>

@@ -11,4 +11,6 @@ public interface LibMapper {
 
     Lib login(@Param("libId") String libId, @Param("libPw") String libPw);
 
+    int countByLibId(@Param("libId") String libId);
+
 }
