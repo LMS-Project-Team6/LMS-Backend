@@ -17,6 +17,13 @@ public class LibController {
     @Autowired
     LibService libService;
 
+    // ✅ 1. 아이디 중복 확인 (추가된 메서드)
+    @PostMapping("checkLibId")
+    public ResponseEntity<Boolean> checkLibId(@RequestParam("libId") String libId) {
+        boolean isDuplicate = libService.isLibIdDuplicate(libId);
+        return new ResponseEntity<>(isDuplicate, HttpStatus.OK);
+    }
+
     // 사서 회원가입
     @PostMapping("save")
     public ResponseEntity<?> save(
@@ -29,6 +36,10 @@ public class LibController {
             @RequestParam(value="adminNY") Integer adminNY,
             @RequestParam(value="applyNY") Integer applyNY
     ){
+        if(libService.isLibIdDuplicate(libId)) {
+            return new ResponseEntity<>("이미 사용 중인 아이디입니다.", HttpStatus.CONFLICT);
+        }
+
         Lib l=new Lib();
 
         l.setLibId(libId);

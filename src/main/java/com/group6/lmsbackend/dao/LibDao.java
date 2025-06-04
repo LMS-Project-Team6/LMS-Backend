@@ -19,4 +19,7 @@ public class LibDao {
     public Lib login(Lib l) {
         return libMapper.login(l.getLibId(), l.getLibPw());
     }
+
+    public int countByLibId(String libId) {return libMapper.countByLibId(libId);}
+
 }

@@ -20,4 +20,6 @@ public class MemDao {
 
     public List<Mem> memSearch(Mem mem) {return memMapper.memSearch(mem);}
 
+    public Mem findByMemId(String memId) {return memMapper.findByMemId(memId);}
+
 }

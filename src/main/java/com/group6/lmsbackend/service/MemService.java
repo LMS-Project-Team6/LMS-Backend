@@ -21,6 +21,6 @@ public class MemService {
 
     public List<Mem> memSearch(Mem mem) {return memDao.memSearch(mem);}
 
-
+    public Mem getMemberByMemId(String memId) {return memDao.findByMemId(memId);}
 
 }

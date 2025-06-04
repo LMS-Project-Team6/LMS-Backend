@@ -11,4 +11,6 @@ public interface MemMapper {
     public int memUpdate(Mem mem);
 
     List<Mem> memSearch(Mem mem);
+
+    Mem findByMemId(String memId);
 }

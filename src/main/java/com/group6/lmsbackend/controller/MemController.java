@@ -80,4 +80,12 @@ public class MemController {
 
 
     // 회원 상세 조회
+    @GetMapping("memDetail/{memId}")
+    public ResponseEntity<Mem> getMemberByMemId(@PathVariable String memId) {
+        Mem mem = memService.getMemberByMemId(memId);
+        if (mem == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(mem);
+    }
 }
