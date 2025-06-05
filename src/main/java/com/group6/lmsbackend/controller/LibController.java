@@ -69,14 +69,7 @@ public class LibController {
         Lib l = libService.login(lib);
 
         if (l != null) {
-            if (l.getAdminNY() == 1) {
-                return new ResponseEntity<>("관리자 입니다.", HttpStatus.OK);
-            } else if (l.getAdminNY() == 0) {
-                return new ResponseEntity<>("사서 입니다.", HttpStatus.OK);
-            }
-            else {
-                return new ResponseEntity<>("잘못 설정 되어 있습니다.", HttpStatus.UNAUTHORIZED);
-            }
+            return new ResponseEntity<Lib>(l, HttpStatus.OK);
         } else {
             return new ResponseEntity<>("아이디 또는 비밀번호가 틀렸습니다.", HttpStatus.UNAUTHORIZED);
         }
