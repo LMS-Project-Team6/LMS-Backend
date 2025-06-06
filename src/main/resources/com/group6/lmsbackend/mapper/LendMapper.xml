@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group6.lmsbackend.mapper.LendMapper">
+
+    <select id="countActiveLoans" resultType="int" parameterType="String">
+        SELECT COUNT(*) FROM lendreturn
+        WHERE memId = #{memId}
+        AND returnNY = 0
+    </select>
+
+    <select id="countBookActiveLoan" resultType="int" parameterType="String">
+        SELECT COUNT(*) FROM lendreturn
+        WHERE bookId = #{bookId}
+        AND returnNY = 0
+    </select>
+
+    <insert id="insertLend" parameterType="com.group6.lmsbackend.vo.LendReturn">
+        INSERT INTO lendreturn (memId, bookId, lendDate, returnDate, returnNY, overNY)
+        VALUES (#{memId}, #{bookId}, #{lendDate}, NULL, #{returnNY}, #{overNY})
+    </insert>
+
+    <update id="markOverdue" parameterType="java.time.LocalDate">
+        UPDATE lendreturn
+        SET overNY = 1
+        WHERE returnNY = 0
+        AND lendDate &lt;= #{threshold}
+    </update>
+
+</mapper>
