@@ -22,4 +22,9 @@ public class MemDao {
 
     public Mem findByMemId(String memId) {return memMapper.findByMemId(memId);}
 
+    public List<Mem> searchMembers(String category, String keyword) {
+        return memMapper.searchMembers(category, keyword);
+    }
+
+
 }

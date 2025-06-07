@@ -64,19 +64,15 @@ public class MemController {
     // 회원 조회
     @GetMapping("memSearch")
     public ResponseEntity<?> memSearch(
-            @RequestParam(value = "memId", required = false) String memId,
-            @RequestParam(value = "memName", required = false) String memName,
-            @RequestParam(value = "memPNum", required = false) String memPNum
-    ){
-        Mem mem = new Mem();
-        mem.setMemId(memId);
-        mem.setMemName(memName);
-        mem.setMemPNum(memPNum);
-
-        List<Mem> results = memService.memSearch(mem);
-
-        return new ResponseEntity<List<Mem>>(results, HttpStatus.OK);
+            @RequestParam(value = "category") String category,
+            @RequestParam(value = "keyword") String keyword
+    ) {
+        List<Mem> members = memService.searchMembers(category, keyword);
+        return members.isEmpty()
+                ? ResponseEntity.ok("검색 결과가 없습니다.")
+                : ResponseEntity.ok(members);
     }
+
 
 
     // 회원 상세 조회

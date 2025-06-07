@@ -1,6 +1,7 @@
 package com.group6.lmsbackend.mapper;
 import com.group6.lmsbackend.vo.Mem;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,4 +14,7 @@ public interface MemMapper {
     List<Mem> memSearch(Mem mem);
 
     Mem findByMemId(String memId);
+
+    List<Mem> searchMembers(@Param("category") String category, @Param("keyword") String keyword);
+
 }

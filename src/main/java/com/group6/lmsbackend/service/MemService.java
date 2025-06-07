@@ -23,4 +23,8 @@ public class MemService {
 
     public Mem getMemberByMemId(String memId) {return memDao.findByMemId(memId);}
 
+    public List<Mem> searchMembers(String category, String keyword) {
+        return memDao.searchMembers(category, keyword);
+    }
+
 }
