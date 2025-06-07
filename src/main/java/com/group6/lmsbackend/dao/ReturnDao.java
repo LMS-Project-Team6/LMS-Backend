@@ -1,6 +1,7 @@
 package com.group6.lmsbackend.dao;
 
 import com.group6.lmsbackend.mapper.ReturnMapper;
+import com.group6.lmsbackend.vo.Mem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -24,4 +25,9 @@ public class ReturnDao {
         param.put("bookIds", bookIds);
         return returnMapper.returnBooks(param);
     }
+
+    public List<Mem> searchMembers(String category, String keyword) {
+        return returnMapper.searchMembers(category, keyword);
+    }
+
 }

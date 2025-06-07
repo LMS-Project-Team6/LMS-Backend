@@ -1,6 +1,7 @@
 package com.group6.lmsbackend.service;
 
 import com.group6.lmsbackend.dao.ReturnDao;
+import com.group6.lmsbackend.vo.Mem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,4 +25,9 @@ public class ReturnService {
         int updated = returnDao.returnBooks(memId, bookIds);
         return updated > 0;
     }
+
+    public List<Mem> searchMembers(String category, String keyword) {
+        return returnDao.searchMembers(category, keyword);
+    }
+
 }

@@ -1,7 +1,9 @@
 package com.group6.lmsbackend.dao;
 
 import com.group6.lmsbackend.mapper.LendMapper;
+import com.group6.lmsbackend.vo.Book;
 import com.group6.lmsbackend.vo.LendReturn;
+import com.group6.lmsbackend.vo.Mem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -34,6 +36,18 @@ public class LendDao {
     // 연체 처리 (대출일 + 14일 지난 경우 overNY = 1)
     public void updateOverdueStatus(LocalDate thresholdDate) {
         lendMapper.markOverdue(thresholdDate);
+    }
+
+    public void markBookAsLent(String bookId) {
+        lendMapper.updateBookLendStatus(bookId);
+    }
+
+    public List<Mem> searchMembers(String category, String keyword) {
+        return lendMapper.searchMembers(category, keyword);
+    }
+
+    public List<Book> searchBooks(String category, String keyword) {
+        return lendMapper.searchBooks(category, keyword);
     }
 }
 

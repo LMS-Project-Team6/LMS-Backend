@@ -35,20 +35,22 @@
             memId = #{memId}
     </update>
 
-    <!--회원 전체 조회-->
-    <select id="memSearch" parameterType="com.group6.lmsbackend.vo.Mem" resultType="com.group6.lmsbackend.vo.Mem">
-        SELECT memId, memName, memPNum
+    <!--회원 전체 조회, 카테고리 : memId, memName, memEmail-->
+    <select id="searchMembers" resultType="com.group6.lmsbackend.vo.Mem">
+        SELECT memId, memName, memEmail, memPNum
         FROM mem
         <where>
-            <if test="memId != null and memId != ''">
-                AND memId = #{memId}
-            </if>
-            <if test="memName != null and memName != ''">
-                AND memName LIKE CONCAT('%', #{memName}, '%')
-            </if>
-            <if test="memPNum != null and memPNum != ''">
-                AND memPNum = #{memPNum}
-            </if>
+            <choose>
+                <when test="category == 'memId'">
+                    memId LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+                <when test="category == 'memName'">
+                    memName LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+                <when test="category == 'memEmail'">
+                    memEmail LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+            </choose>
         </where>
     </select>
 
