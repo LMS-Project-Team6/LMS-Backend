@@ -15,6 +15,10 @@ public class BookDao {
     @Autowired
     private BookMapper bookMapper;
 
+    public List<Book> getAllBooks() {
+        return bookMapper.findAll();
+    }
+
     public int addBook(Book book) { return bookMapper.addBook(book); }
 
     public int updateBook(Book book) { return bookMapper.updateBook(book); }

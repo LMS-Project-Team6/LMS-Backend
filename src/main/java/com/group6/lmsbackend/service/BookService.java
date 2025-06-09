@@ -13,6 +13,10 @@ public class BookService {
     @Autowired
     private BookDao bookDao;
 
+    public List<Book> getAllBooks() {
+        return bookDao.getAllBooks();
+    }
+
     public int addBook(Book book) { return bookDao.addBook(book); }
 
     public int updateBook(Book book) { return bookDao.updateBook(book); }
