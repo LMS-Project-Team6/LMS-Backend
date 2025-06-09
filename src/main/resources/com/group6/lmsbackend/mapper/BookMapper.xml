@@ -1,5 +1,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.group6.lmsbackend.mapper.BookMapper">
+    <select id="findAll" resultType="com.group6.lmsbackend.vo.Book">
+        SELECT
+            bookId,
+            bookTitle,
+            bookWriter,
+            bookPublisher,
+            bookCNum,
+            lendNY,
+            createdDate,
+            modifiedDate
+        FROM book
+    </select>
+
     <insert id="addBook" parameterType="com.group6.lmsbackend.vo.Book">
         INSERT INTO book (
             bookId,
@@ -11,15 +24,15 @@
             createdDate,
             modifiedDate
         )VALUES (
-                 #{bookId},
-                 #{bookTitle},
-                 #{bookWriter},
-                 #{bookPublisher},
-                 #{bookCNum},
-                 #{lendNY},
-                 SYSDATE(),
-                 SYSDATE()
-                        )
+                    #{bookId},
+                    #{bookTitle},
+                    #{bookWriter},
+                    #{bookPublisher},
+                    #{bookCNum},
+                    #{lendNY},
+                    SYSDATE(),
+                    SYSDATE()
+                )
     </insert>
 
     <update id="updateBook" parameterType="com.group6.lmsbackend.vo.Book">
@@ -37,13 +50,13 @@
         <where>
             <choose>
                 <when test="searchType == 'bookId'">
-                    AND bookId = #{searchValue}
+                    AND bookId LIKE CONCAT('%', #{searchValue}, '%')
                 </when>
                 <when test="searchType == 'bookTitle'">
                     AND bookTitle LIKE CONCAT('%', #{searchValue}, '%')
                 </when>
                 <when test="searchType == 'bookCNum'">
-                    AND bookCNum = #{searchValue}
+                    AND bookCNum LIKE CONCAT('%', #{searchValue}, '%')
                 </when>
             </choose>
         </where>

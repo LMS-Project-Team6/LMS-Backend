@@ -10,12 +10,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping(value = "book")
 public class BookController {
 
     @Autowired
     private BookService bookService;
+
+    // 도서 리스트
+    @GetMapping("findAll")
+    public List<Book> getAllBooks() {
+        return bookService.getAllBooks();
+    }
 
     //도서 추가
     @PostMapping("addBook")
