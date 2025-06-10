@@ -7,6 +7,8 @@ import java.util.List;
 
 @Mapper
 public interface MemMapper {
+    List<Mem> findAll();
+
     public int memAdd(Mem mem);
 
     public int memUpdate(Mem mem);

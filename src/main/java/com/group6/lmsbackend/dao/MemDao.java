@@ -12,6 +12,8 @@ public class MemDao {
     @Autowired
     private MemMapper memMapper;
 
+    public List<Mem> getAllMems() { return memMapper.findAll(); }
+
     public int memAdd(Mem mem) {
         return memMapper.memAdd(mem);
     }
