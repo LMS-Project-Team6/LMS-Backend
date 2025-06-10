@@ -31,6 +31,7 @@ public class BookController {
             @RequestParam(value="bookWriter") String bookWriter,
             @RequestParam(value="bookPublisher") String bookPublisher,
             @RequestParam(value="bookCNum") String bookCNum,
+            @RequestParam(value = "bookIntrd") String bookIntrd,
             @RequestParam(value="lendNY") Integer lendNY
     ){
         Book book = new Book();
@@ -40,6 +41,7 @@ public class BookController {
         book.setBookWriter(bookWriter);
         book.setBookPublisher(bookPublisher);
         book.setBookCNum(bookCNum);
+        book.setBookIntrd(bookIntrd);
         book.setLendNY(lendNY);
 
         bookService.addBook(book);
@@ -54,7 +56,8 @@ public class BookController {
             @RequestParam(value="bookTitle") String bookTitle,
             @RequestParam(value="bookWriter") String bookWriter,
             @RequestParam(value="bookPublisher") String bookPublisher,
-            @RequestParam(value="bookCNum") String bookCNum
+            @RequestParam(value="bookCNum") String bookCNum,
+            @RequestParam(value="bookIntrd") String bookIntrd
     ){
         Book book = new Book();
 
@@ -63,6 +66,7 @@ public class BookController {
         book.setBookWriter(bookWriter);
         book.setBookPublisher(bookPublisher);
         book.setBookCNum(bookCNum);
+        book.setBookIntrd(bookIntrd);
 
         bookService.updateBook(book);
 
