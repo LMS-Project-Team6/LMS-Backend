@@ -5,17 +5,22 @@ import com.group6.lmsbackend.vo.Mem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping(value = "mem")
 public class MemController {
 
     @Autowired
     MemService memService;
+
+    // 회원 리스트
+    @GetMapping("findAll")
+    public List<Mem> getAllMems() {
+        return memService.getAllMems();
+    }
 
     // 회원 추가
     @PostMapping("memAdd")

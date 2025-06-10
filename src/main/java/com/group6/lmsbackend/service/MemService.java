@@ -13,6 +13,8 @@ public class MemService {
     @Autowired
     MemDao memDao;
 
+    public List<Mem> getAllMems() { return memDao.getAllMems(); }
+
     public int memAdd(Mem mem) {
         return memDao.memAdd(mem);
     }
