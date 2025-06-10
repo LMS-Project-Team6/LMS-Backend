@@ -6,6 +6,7 @@ public class Book {
     private String bookWriter;
     private String bookPublisher;
     private String bookCNum;
+    private String bookIntrd;
     private int lendNY;
     private String createdDate;
     private String modifiedDate;
@@ -29,6 +30,10 @@ public class Book {
     public String getBookCNum() { return bookCNum; }
 
     public void setBookCNum(String bookCNum) { this.bookCNum = bookCNum; }
+
+    public String getBookIntrd() { return bookIntrd; }
+
+    public void setBookIntrd(String bookIntrd) { this.bookIntrd = bookIntrd; }
 
     public String getCreatedDate() { return createdDate; }
 
