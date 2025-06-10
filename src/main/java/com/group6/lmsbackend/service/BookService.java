@@ -13,9 +13,9 @@ public class BookService {
     @Autowired
     private BookDao bookDao;
 
-    public List<Book> getAllBooks() {
-        return bookDao.getAllBooks();
-    }
+    public boolean deleteBook(String bookId) { return bookDao.deleteBook(bookId); }
+
+    public List<Book> getAllBooks() { return bookDao.getAllBooks(); }
 
     public int addBook(Book book) { return bookDao.addBook(book); }
 

@@ -17,6 +17,17 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
+    // 도서 삭제
+    @DeleteMapping("/deleteBook")
+    public String deleteBook(@RequestParam String bookId) {
+        boolean success = bookService.deleteBook(bookId);
+        if (success) {
+            return "도서 삭제가 완료되었습니다.";
+        } else {
+            return "도서 삭제에 실패했습니다.";
+        }
+    }
+
     // 도서 리스트
     @GetMapping("findAll")
     public List<Book> getAllBooks() {

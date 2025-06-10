@@ -15,9 +15,9 @@ public class BookDao {
     @Autowired
     private BookMapper bookMapper;
 
-    public List<Book> getAllBooks() {
-        return bookMapper.findAll();
-    }
+    public boolean deleteBook(String bookId) { return bookMapper.deleteBookById(bookId) > 0; }
+
+    public List<Book> getAllBooks() { return bookMapper.findAll(); }
 
     public int addBook(Book book) { return bookMapper.addBook(book); }
 
