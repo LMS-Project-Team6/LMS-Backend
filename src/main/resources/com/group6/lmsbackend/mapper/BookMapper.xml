@@ -46,7 +46,16 @@
     </update>
 
     <select id="searchBooks" parameterType="map" resultType="com.group6.lmsbackend.vo.Book">
-        SELECT bookId, bookTitle, bookCNum FROM book
+        SELECT
+            bookId,
+            bookTitle,
+            bookWriter,
+            bookPublisher,
+            bookCNum,
+            lendNY,
+            createdDate,
+            modifiedDate
+        FROM book
         <where>
             <choose>
                 <when test="searchType == 'bookId'">
