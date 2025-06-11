@@ -13,6 +13,8 @@ public class BookService {
     @Autowired
     private BookDao bookDao;
 
+    public List<Book> findAllAvailability() { return bookDao.findAllAvailability(); }
+
     public boolean deleteBook(String bookId) { return bookDao.deleteBook(bookId); }
 
     public List<Book> getAllBooks() { return bookDao.getAllBooks(); }

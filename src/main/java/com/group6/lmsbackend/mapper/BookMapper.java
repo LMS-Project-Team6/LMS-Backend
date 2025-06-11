@@ -9,6 +9,8 @@ import java.util.Map;
 @Mapper
 public interface BookMapper {
 
+    List<Book> findAllAvailability();
+
     public int deleteBookById(String bookId);
 
     List<Book> findAll();
