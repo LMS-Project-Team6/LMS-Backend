@@ -1,9 +1,13 @@
 package com.group6.lmsbackend.service;
 
 import com.group6.lmsbackend.dao.ReturnDao;
+import com.group6.lmsbackend.vo.Book;
+import com.group6.lmsbackend.vo.LendReturn;
 import com.group6.lmsbackend.vo.Mem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 import java.util.Map;
@@ -14,20 +18,21 @@ public class ReturnService {
     @Autowired
     private ReturnDao returnDao;
 
-    public List<Map<String, Object>> getLoanedBooks(String memId) {
-        return returnDao.findLoanedBooks(memId);
-    }
+    public List<LendReturn> findAllNotReturn() { return returnDao.findAllNotReturn(); }
 
-    public boolean returnBooks(String memId, List<String> bookIds) {
-        if (memId == null || memId.isBlank() || bookIds == null || bookIds.isEmpty()) {
-            return false;
+    @Transactional
+    public boolean returnBooks(List<String> bookIds) {
+        if (bookIds == null || bookIds.isEmpty()) return false;
+
+        int updated = returnDao.returnBooksByBookIds(bookIds);
+
+        if (updated > 0) {
+            for (String bookId : bookIds) {
+                returnDao.markBookAsReturn(bookId);
+            }
+            return true;
         }
-        int updated = returnDao.returnBooks(memId, bookIds);
-        return updated > 0;
-    }
 
-    public List<Mem> searchMembers(String category, String keyword) {
-        return returnDao.searchMembers(category, keyword);
+        return false;
     }
-
 }
