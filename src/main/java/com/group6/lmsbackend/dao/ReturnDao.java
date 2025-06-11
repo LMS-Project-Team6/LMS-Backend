@@ -1,6 +1,8 @@
 package com.group6.lmsbackend.dao;
 
 import com.group6.lmsbackend.mapper.ReturnMapper;
+import com.group6.lmsbackend.vo.Book;
+import com.group6.lmsbackend.vo.LendReturn;
 import com.group6.lmsbackend.vo.Mem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,19 +17,13 @@ public class ReturnDao {
     @Autowired
     private ReturnMapper returnMapper;
 
-    public List<Map<String, Object>> findLoanedBooks(String memId) {
-        return returnMapper.findLoanedBooks(memId);
+    public List<LendReturn> findAllNotReturn() { return returnMapper.findAllNotReturn(); }
+
+    public int returnBooksByBookIds(List<String> bookIds) {
+        return returnMapper.returnBooksByBookIds(bookIds);
     }
 
-    public int returnBooks(String memId, List<String> bookIds) {
-        Map<String, Object> param = new HashMap<>();
-        param.put("memId", memId);
-        param.put("bookIds", bookIds);
-        return returnMapper.returnBooks(param);
+    public void markBookAsReturn(String bookId) {
+        returnMapper.updateBookReturnStatus(bookId);
     }
-
-    public List<Mem> searchMembers(String category, String keyword) {
-        return returnMapper.searchMembers(category, keyword);
-    }
-
 }
