@@ -1,16 +1,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.group6.lmsbackend.mapper.ReturnMapper">
 
+    <select id="searchLendBooks" parameterType="map" resultType="com.group6.lmsbackend.vo.LendReturn">
+        SELECT
+        lr.lendIndex AS lendIndex,
+        lr.memId AS memId,
+        lr.bookId AS bookId,
+        lr.lendDate AS lendDate,
+        lr.returnDate AS returnDate,
+        lr.returnNY AS returnNY,
+        lr.overNY AS overNY,
+        m.memName AS memName,
+        b.bookTitle AS bookTitle
+        FROM lendreturn lr
+        JOIN mem m ON lr.memId = m.memId
+        JOIN book b ON lr.bookId = b.bookId
+        <where>
+            lr.returnNY = 0
+            <choose>
+                <when test="searchType == 'bookId'">
+                    AND lr.bookId LIKE CONCAT('%', #{searchValue}, '%')
+                </when>
+            </choose>
+        </where>
+    </select>
+
     <select id="findAllNotReturn" resultType="com.group6.lmsbackend.vo.LendReturn">
         SELECT
-            lendIndex,
-            memId,
-            bookId,
-            lendDate,
-            returnDate,
-            returnNY,
-            overNY
-        FROM lendreturn
+            lr.lendIndex AS lendIndex,
+            lr.memId AS memId,
+            lr.bookId AS bookId,
+            lr.lendDate AS lendDate,
+            lr.returnDate AS returnDate,
+            lr.returnNY AS returnNY,
+            lr.overNY AS overNY,
+            m.memName AS memName,
+            b.bookTitle AS bookTitle
+        FROM lendreturn lr
+        JOIN mem m ON lr.memId = m.memId
+        JOIN book b ON lr.bookId = b.bookId
         WHERE returnNY = 0
     </select>
 

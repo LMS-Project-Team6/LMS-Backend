@@ -18,6 +18,10 @@ public class ReturnService {
     @Autowired
     private ReturnDao returnDao;
 
+    public List<LendReturn> searchLendBooks(String searchType, String searchValue) {
+        return returnDao.searchLendBooks(searchType, searchValue);
+    }
+
     public List<LendReturn> findAllNotReturn() { return returnDao.findAllNotReturn(); }
 
     @Transactional

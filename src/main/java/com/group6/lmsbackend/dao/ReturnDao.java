@@ -17,6 +17,10 @@ public class ReturnDao {
     @Autowired
     private ReturnMapper returnMapper;
 
+    public List<LendReturn> searchLendBooks(String searchType, String searchValue) {
+        return returnMapper.searchLendBooks(searchType, searchValue);
+    }
+
     public List<LendReturn> findAllNotReturn() { return returnMapper.findAllNotReturn(); }
 
     public int returnBooksByBookIds(List<String> bookIds) {

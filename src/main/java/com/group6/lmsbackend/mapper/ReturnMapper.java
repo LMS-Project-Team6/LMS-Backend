@@ -12,6 +12,8 @@ import java.util.Map;
 @Mapper
 public interface ReturnMapper {
 
+    List<LendReturn> searchLendBooks(@Param("searchType") String searchType, @Param("searchValue") String searchValue);
+
     List<LendReturn> findAllNotReturn();
 
     int returnBooksByBookIds(@Param("bookIds") List<String> bookIds);
