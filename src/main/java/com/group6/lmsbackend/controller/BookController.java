@@ -17,6 +17,12 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
+    // 대출 가능한 도서 리스트
+    @GetMapping("/findAllAvailability")
+    public List<Book> getAvailableBooks() {
+        return bookService.findAllAvailability();
+    }
+
     // 도서 삭제
     @DeleteMapping("/deleteBook")
     public String deleteBook(@RequestParam String bookId) {
