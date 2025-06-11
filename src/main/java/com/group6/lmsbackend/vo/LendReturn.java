@@ -9,13 +9,12 @@ public class LendReturn {
     private int returnNY=0;
     private int overNY=0;
 
-    public Integer getLendIndex() {
-        return lendIndex;
-    }
+    private String bookTitle;  // 책 제목
+    private String memName;    // 회원 이름
 
-    public void setLendIndex(Integer lendIndex) {
-        this.lendIndex = lendIndex;
-    }
+    public int getLendIndex() { return lendIndex; }
+
+    public void setLendIndex(int lendIndex) { this.lendIndex = lendIndex; }
 
     public String getMemId() {
         return memId;
@@ -64,4 +63,12 @@ public class LendReturn {
     public void setOverNY(int overNY) {
         this.overNY = overNY;
     }
+
+    public String getBookTitle() { return bookTitle; }
+
+    public void setBookTitle(String bookTitle) { this.bookTitle = bookTitle; }
+
+    public String getMemName() { return memName; }
+
+    public void setMemName(String memName) { this.memName = memName; }
 }
