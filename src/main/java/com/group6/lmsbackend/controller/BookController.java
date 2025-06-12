@@ -25,12 +25,18 @@ public class BookController {
 
     // 도서 삭제
     @DeleteMapping("/deleteBook")
-    public String deleteBook(@RequestParam String bookId) {
-        boolean success = bookService.deleteBook(bookId);
-        if (success) {
-            return "도서 삭제가 완료되었습니다.";
-        } else {
-            return "도서 삭제에 실패했습니다.";
+    public ResponseEntity<String> deleteBook(@RequestParam String bookId) {
+        try {
+            boolean success = bookService.deleteBook(bookId);
+            if (success) {
+                return ResponseEntity.ok("도서 삭제가 완료되었습니다.");
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("도서를 찾을 수 없습니다.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // 서버 로그 확인용
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("도서 삭제 중 오류 발생: " + e.getMessage());
         }
     }
 
